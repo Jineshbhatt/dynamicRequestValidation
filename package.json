@@ -1,0 +1,43 @@
+{
+  
+  "_from": "node-red-contrib-dynamic-request-validator@1.0.4",
+  "_id": "node-red-contrib-dynamic-request-validator@1.0.4",
+  "_shasum": "011c9905bfb1c718ed22af19d69840cf67a1902b",
+  "_inBundle": false,
+  "_location": "/node-red-contrib-dynamic-request-validator",
+  "name": "node-red-contrib-dynamic-request-validator",
+  "version": "1.0.4",
+  "description": "",
+  "main": "index.js",
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "node-red-contrib-dynamic-request-validator@1.0.4",
+    "name": "node-red-contrib-dynamic-request-validator",
+    "escapedName": "node-red-contrib-dynamic-request-validator",
+    "rawSpec": "1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "1.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "requestValidator": "dynamicRequestValidator.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "request-validate",
+    "json-request-validator",
+    "schema-request-validator",
+    "HTTPrequest-validator"
+  ],
+  "author": "JineshBhatt",
+  "license": "ISC",
+  "dependencies": {
+    "dot-object": "^2.1.4",
+    "validator": "^13.7.0"
+  }
+}

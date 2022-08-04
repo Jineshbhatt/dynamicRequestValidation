@@ -1,0 +1,161 @@
+<script type="text/javascript">
+    RED.nodes.registerType('requestValidator',{
+        color: '#FA8072',
+        category: 'validate',
+        defaults: {
+            name: { value: "Dynamic Request Validator" },
+            group_name: { value: "" },
+            query: { value: "", required: false },
+            reqbody: { value: "", required: false },
+            method: { value: "GET", required: true },
+            includeHeader: { value: false, required: false },
+            headerSchema: { value: "", required: false }
+        },
+        inputs: 1,
+        outputs: 2,
+        icon: "font-awesome/fa-check-square-o",
+        label: function() {
+            return this.name||"Dynamic Request Validator";
+        },
+        oneditprepare: function () {
+            $("#node-input-method").typedInput({
+                types: [
+                    {
+                        value: "method",
+                        options: [
+                            { value: "GET", label: "GET" },
+                            { value: "POST", label: "POST" },
+                            { value: "PUT", label: "PUT" },
+                            { value: "DELETE", label: "DELETE" }
+                        ]
+                    }
+                ]
+            })
+            $("#node-input-query").typedInput({
+                type: "json",
+                types: ["json"]
+            })
+            $("#node-input-reqbody").typedInput({
+                type: "json",
+                types: ["json"]
+            })
+
+        }
+    })
+
+
+</script>
+
+<script type="text/html" data-template-name="requestValidator">
+
+    <div class="form-row">
+        <label for="node-input-name"><i></i>Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-method"><i></i>Method</label>
+        <input type="text" id="node-input-method">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-reqbody"><i></i>Validation Schema/Rules</label>
+        <input type="json" id="node-input-reqbody" placeholder='{"email":{"type":"string"}}'>
+    </div>
+</script>
+
+<script type="text/markdown" data-help-name="requestValidator">
+Create Schemas to validate request method, body and query parameters.
+Schemas are configured in this node Properties. 
+
+---
+
+### Properties
+
+- Method (GET, POST, PUT, DELETE) - the expected method of the request to be validated.
+
+- Validation Schema/Rules - Schema to validate Rules.
+
+### Outputs
+
+1. Valid Request (top output) 
+    * `msg (any)` - the original msg of request.
+2. Invalid Request (bottom output)
+    * `payload (json)` - the error message.
+    * `statusCode (400 | 500)` - the status code of error.
+
+
+## Examples
+
+### Body schema example
+
+```json
+    {
+        value: '', // provide dot string path of your values which need to validate
+        required: {
+            value: "", // value should be true / false
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+        },
+        regex: {
+            value: {type: String}, // provide regex
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+        },
+        minLength: {
+            value: {type: Int32},
+           message: "", // specified return msg
+            errCode: "" // // specified return error Code
+        },
+        maxLength: {
+            value: {type: Int32},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+        },
+        equal: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        notEqual: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        isBefore: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        greaterThan: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        lessThan: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        greaterThanEqual: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        },
+        lessThanEqual: {
+            value: {type: String},
+            message: "", // specified return msg
+            errCode: "" // // specified return error Code
+            defaultValue: {type: String}
+        }
+    }
+```
+
+
+</script>
